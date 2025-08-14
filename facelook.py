@@ -1,7 +1,7 @@
 import cv2
 from deepface import DeepFace
 
-video_capture = cv2.VideoCapture(0)  # استفاده از دوربین وب
+video_capture = cv2.VideoCapture(0)  # use camera
 
 try:
     while True:
@@ -14,7 +14,7 @@ try:
             results = DeepFace.analyze(frame, actions=['age'], enforce_detection=False)
             
             for face in results:
-                if 'facial_area' in face:  # برای نسخه‌های جدید DeepFace
+                if 'facial_area' in face:  #  DeepFace
                     x, y, w, h = face['facial_area']['x'], face['facial_area']['y'], face['facial_area']['w'], face['facial_area']['h']
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
                     age = face['age']
